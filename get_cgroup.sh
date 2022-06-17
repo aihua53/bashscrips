@@ -4,9 +4,10 @@
 # mkdir $1
 # cd ..
 
-echo "help info"
+echo "help info:"
 echo "sh /system/bin/get_cgroup.sh name"
 echo "file saved in /sdcard/cgroup/name"
+echo "wait 30s, it will auto exit after 30s"
 
 path="/sdcard/cgroup/"$1
 mkdir -p $path
@@ -45,3 +46,5 @@ cat /dev/cpuset/system-background/tasks  > $path/sys_bg_tasks.txt
 
 cat /dev/cpuset/camera-daemon/cgroup.procs > $path/camera-daemon_procs.txt
 cat /dev/cpuset/camera-daemon/tasks  > $path/camera-daemon_tasks.txt
+
+top -d 30 -m 30 -n 2 > $path/top.txt
